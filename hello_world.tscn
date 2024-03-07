@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://ciie38g07fwji"]
+
+[ext_resource type="Texture2D" uid="uid://d1xqimjl8w22u" path="res://resource/Menu/Buttons/Close.png" id="1_6kbgm"]
+[ext_resource type="PackedScene" uid="uid://bix8qd8lmf3pu" path="res://player.tscn" id="2_vgaw4"]
+[ext_resource type="Texture2D" uid="uid://0p322kfxlvhc" path="res://resource/Main Characters/Ninja Frog/Fall (32x32).png" id="4_a1803"]
+[ext_resource type="Script" path="res://scripts/back_to_home.gd" id="4_ocbab"]
+[ext_resource type="Script" path="res://scripts/ConfirmationDialog.gd" id="5_32l2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7qg7"]
+size = Vector2(2030, 76)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_biyds"]
+bg_color = Color(0.823529, 0.490196, 0.505882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go4g5"]
+bg_color = Color(0.929412, 0.419608, 0.352941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3eppp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="HelloWorld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_vgaw4")]
+position = Vector2(301, 218)
+scale = Vector2(2, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(994, 618)
+shape = SubResource("RectangleShape2D_p7qg7")
+one_way_collision = true
+
+[node name="Floor" type="Panel" parent="StaticBody2D"]
+offset_left = -15.0
+offset_top = 580.0
+offset_right = 2011.0
+offset_bottom = 662.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_biyds")
+
+[node name="PlayerInfoBox" type="Panel" parent="."]
+offset_left = 34.0
+offset_top = 29.0
+offset_right = 227.0
+offset_bottom = 87.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_go4g5")
+
+[node name="Avatar" type="Panel" parent="PlayerInfoBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 7.0
+offset_top = -22.0
+offset_right = 51.0
+offset_bottom = 22.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3eppp")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerInfoBox/Avatar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -16.0
+offset_right = 17.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_a1803")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="PlayerInfoBox"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 5.0
+offset_right = 142.0
+offset_bottom = 28.0
+text = "Ninja Frog "
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1111.0
+offset_top = 9.0
+offset_right = 1126.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_6kbgm")
+script = ExtResource("4_ocbab")
+
+[node name="QuitConfirmDialog" type="ConfirmationDialog" parent="."]
+initial_position = 3
+size = Vector2i(265, 100)
+current_screen = 0
+dialog_text = "Are you sure to quit this game ? "
+script = ExtResource("5_32l2v")
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]
+[connection signal="confirmed" from="QuitConfirmDialog" to="QuitConfirmDialog" method="_on_confirmed"]

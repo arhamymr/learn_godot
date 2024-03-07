@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://pidlbmaugsln"]
+
+[ext_resource type="Script" path="res://scripts/Play.gd" id="1_f3gby"]
+[ext_resource type="Script" path="res://scripts/Quit.gd" id="2_xvf4d"]
+[ext_resource type="Script" path="res://scripts/Settings.gd" id="3_01lv2"]
+
+[sub_resource type="SystemFont" id="SystemFont_rtg1j"]
+
+[sub_resource type="Theme" id="Theme_gpsmx"]
+default_font = SubResource("SystemFont_rtg1j")
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 216.0
+offset_right = 761.0
+offset_bottom = 295.0
+theme = SubResource("Theme_gpsmx")
+text = "Play"
+script = ExtResource("1_f3gby")
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 434.0
+offset_top = 460.0
+offset_right = 757.0
+offset_bottom = 539.0
+theme = SubResource("Theme_gpsmx")
+text = "Quit"
+script = ExtResource("2_xvf4d")
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 333.0
+offset_right = 762.0
+offset_bottom = 412.0
+theme = SubResource("Theme_gpsmx")
+text = "Settings
+"
+script = ExtResource("3_01lv2")
+
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
+[connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]

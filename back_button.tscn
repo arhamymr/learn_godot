@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm8d8k4xbhl0p"]
+
+[ext_resource type="Script" path="res://scripts/back.gd" id="1_regy6"]
+
+[node name="Button" type="Button"]
+offset_left = 37.0
+offset_top = 34.0
+offset_right = 224.0
+offset_bottom = 97.0
+text = "Back
+"
+script = ExtResource("1_regy6")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
